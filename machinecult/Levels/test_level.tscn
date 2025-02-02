@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1inklw1tr3hr"]
+[gd_scene load_steps=7 format=3 uid="uid://d1inklw1tr3hr"]
 
 [ext_resource type="PackedScene" uid="uid://q0oqe43xnef3" path="res://GameObjects/Characters/Player/player.tscn" id="1_mamin"]
 [ext_resource type="PackedScene" uid="uid://c1c5l0423lg1f" path="res://GameObjects/Props/test_area.tscn" id="2_anmn7"]
+[ext_resource type="PackedScene" uid="uid://dcs4cqpuw345v" path="res://GameObjects/Props/Box.tscn" id="3_hq43q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ph4ld"]
 sky_top_color = Color(0.665235, 0.35735, 1.92523e-07, 1)
@@ -30,3 +31,18 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0867465, 0)
 
 [node name="TestArea" parent="." instance=ExtResource("2_anmn7")]
+
+[node name="Box" parent="." instance=ExtResource("3_hq43q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06262, -0.591065, 10.1423)
+
+[node name="Box2" parent="." instance=ExtResource("3_hq43q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41037, -0.591065, 4.56625)
+
+[node name="Box3" parent="." instance=ExtResource("3_hq43q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6015, -0.591065, 27.9398)
+
+[node name="Box4" parent="." instance=ExtResource("3_hq43q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.737, -0.591065, -19.5826)
+
+[node name="Box5" parent="." instance=ExtResource("3_hq43q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.968, -0.591065, -7.69068)
