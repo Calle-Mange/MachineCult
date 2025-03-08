@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dogi4vl0r3ejk"]
+
+[ext_resource type="Script" path="res://Assets/Components/AttackComponent.cs" id="1_dixqt"]
+
+[node name="AttackComponent" type="Node3D"]
+script = ExtResource("1_dixqt")

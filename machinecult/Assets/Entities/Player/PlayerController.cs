@@ -21,12 +21,14 @@ public partial class PlayerController : CharacterBody3D
 	Node3D Weapon;
 	Camera3D Camera;
 	Timer DodgeTimer;
+	AnimationPlayer Animator;
 	#endregion
 
 	public override void _Ready()
 	{
 		Head = GetNode<Node3D>("Head");
 		Camera = GetNode<Camera3D>("Head/Camera3D");
+		Animator = GetNode<AnimationPlayer>("Head/Camera3D/Weapon/prop_sword/AnimationPlayer");
 		DodgeTimer = new Timer();
 		AddChild(DodgeTimer);
 		DodgeTimer.Timeout += OnDodgeTimerTimeout;
@@ -46,6 +48,23 @@ public partial class PlayerController : CharacterBody3D
             cameraRotation.X = Mathf.Clamp(cameraRotation.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
             Camera.Rotation = cameraRotation;
         }
+
+		if (Input.IsActionJustPressed("Esc"))
+		{
+			if (Input.MouseMode == Input.MouseModeEnum.Captured)
+			{
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+            }
+			else
+			{
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+        }
+
+		if (Input.IsActionJustPressed("attack"))
+		{
+			Animator.Play("prop_sword_strike");
+		}
     }
 
     public override void _PhysicsProcess(double delta)
@@ -71,8 +90,6 @@ public partial class PlayerController : CharacterBody3D
 			DodgeTimer.Start();
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
 		Vector3 direction = (Head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)

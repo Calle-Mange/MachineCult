@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://q0oqe43xnef3"]
+
+[ext_resource type="Script" path="res://Assets/Entities/Player/PlayerController.cs" id="1_8i8dj"]
+[ext_resource type="PackedScene" uid="uid://ddjoav4nq8bjx" path="res://Assets/Components/hitbox_component.tscn" id="2_rjv1j"]
+[ext_resource type="PackedScene" uid="uid://dbvg32xefg5tt" path="res://Assets/Entities/Player/Graphics/prop_sword.glb" id="3_tft5m"]
+[ext_resource type="Animation" uid="uid://dn11emniedwcb" path="res://Assets/Entities/Player/Animations/prop_sword_strike.res" id="4_324vl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v68al"]
+radius = 0.0581089
+height = 1.13668
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rw1vp"]
+_data = {
+"prop_sword_strike": ExtResource("4_324vl")
+}
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hx3oq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byvcr"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000736237, 0.00554356, 0.000183105)
+collision_mask = 2
+script = ExtResource("1_8i8dj")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583878, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Weapon" type="Area3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.244873, -0.775992)
+collision_mask = 0
+
+[node name="HitboxComponent" parent="Head/Camera3D/Weapon" instance=ExtResource("2_rjv1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417134, 0.423425, -0.0306143)
+shape = SubResource("CapsuleShape3D_v68al")
+
+[node name="prop_sword" parent="Head/Camera3D/Weapon" instance=ExtResource("3_tft5m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.403581, -0.535924, -0.0324638)
+
+[node name="Cylinder" parent="Head/Camera3D/Weapon/prop_sword" index="0"]
+transform = Transform3D(-4.88762e-09, 0, 0.03, 0, 0.3, 0, -0.03, 0, -4.88762e-09, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="Head/Camera3D/Weapon/prop_sword" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_rw1vp")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_hx3oq")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_rjv1j")]
+shape = SubResource("CapsuleShape3D_byvcr")
+
+[editable path="Head/Camera3D/Weapon/prop_sword"]

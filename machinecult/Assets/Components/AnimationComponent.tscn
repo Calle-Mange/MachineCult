@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8c8ut4vttn3c"]
+
+[ext_resource type="Script" path="res://Assets/Components/AnimationComponent.cs" id="1_jnntf"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_aqfnx"]
+
+[node name="AnimationComponent" type="Node"]
+script = ExtResource("1_jnntf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_aqfnx")
+anim_player = NodePath("../AnimationPlayer")
